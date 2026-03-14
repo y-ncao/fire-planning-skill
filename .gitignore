@@ -1,0 +1,10 @@
+# Personal financial data - DO NOT commit
+FIRE_Plan_*.md
+fire_plan_*.md
+source-files/
+
+# macOS
+.DS_Store
+
+# Packaged skill file (optional - uncomment if you don't want it in repo)
+# *.skill
