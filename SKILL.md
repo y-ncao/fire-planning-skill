@@ -32,6 +32,7 @@ Before writing anything, collect as much source data as possible. Ask the user w
 - ESOP/RSU grant summaries from employer platforms
 - TreasuryDirect for I Bonds/savings bonds
 - Credit line statements (LAL, margin, HELOC)
+- Quarterly brokerage statements (PDF) - for managed account return calculation and fee extraction
 
 **Spending Data:**
 - Monthly spending totals from bank/credit card aggregation (user provides verbally or via screenshot)
@@ -64,6 +65,8 @@ Common corrections to expect:
 - Property tax should come from actual tax bills, not estimates
 - Tax estimates improve significantly when prior year balance due amounts are available
 - Account holdings need actual brokerage screenshots for per-stock breakdown
+- Multi-W2 state withholdings: when a person has 2+ W2s, read each Box 17 individually rather than estimating. This is a common source of $20K+ errors
+- Managed account fees: extract actual ADV FEE entries from quarterly statements, don't estimate from published rate schedules
 
 ## Key Principles
 
@@ -77,10 +80,19 @@ Always present asset totals in two views: "不含ESOP" and "含已vest ESOP". No
 Present at least two FIRE scenarios (e.g., keep status quo vs. sell rental property). For each scenario, calculate the full spending waterfall, not just the FIRE number. When comparing scenarios, factor in tax consequences (capital gains on property sale), lost interest rate advantages (low-rate mortgages are valuable), and changes to passive income streams.
 
 ### Cross-Account Aggregation
-The most valuable insight comes from aggregating holdings across accounts. A user may hold META in both MS 2530 and E*TRADE 2106 without realizing total concentration. Always present a cross-account consolidated view.
+The most valuable insight comes from aggregating holdings across accounts. A user may hold the same stock across multiple brokerage accounts without realizing total concentration. Always present a cross-account consolidated view.
 
 ### Actionable Over Theoretical
-Every analysis section should lead to specific, time-bound action items. "Reduce META concentration" is vague; "Sell $100K-$150K META per quarter from MS 2530 and E*TRADE, redirect to VTI/VOO" is actionable.
+Every analysis section should lead to specific, time-bound action items. "Reduce stock X concentration" is vague; "Sell $XX per quarter from Account A and Account B, redirect to VTI/VOO" is actionable.
+
+### Tax Accuracy is Paramount
+The savings rate calculation is the foundation for FIRE timeline projections - even a 10% error propagates into years of difference. Always use the full three-component tax model (W2 withholdings + estimated payments + balance due). The balance due component is the most commonly omitted, because it requires prior-year tax payment confirmations that the user may not think to provide. Proactively ask for these. If using only two components, the savings number will be $100K-$160K+ too high for high-income households.
+
+### Performance Benchmarking
+Every holding should be measured against S&P 500 (VOO). Present multi-period returns (6/12/18/24 months) and split the performance table into above-benchmark and below-benchmark sections. For managed accounts, always show both gross and net-of-fees returns, and include a narrative comparing to the benchmark with a clear recommendation (keep vs. switch to self-managed index).
+
+### Managed Account Analysis
+When the portfolio includes advisory/SMA accounts, extract actual fees from quarterly statements (not estimated from rate cards). Calculate returns using Modified Dietz method to account for contributions/withdrawals. See `references/calculations.md` sections 10-11 for detailed methodology.
 
 ## Format Guidelines
 
@@ -117,9 +129,13 @@ When updating an existing FIRE plan:
 2. **Update account balances** - from latest brokerage screenshots/Copilot
 3. **Update ESOP** - check for new vest events, price changes
 4. **Update spending** - add new months of spending data to the trailing average
-5. **Recalculate all derived numbers** - FIRE numbers, progress percentages, asset allocation percentages
-6. **Review action items** - mark completed items with [x], add new ones
-7. **Update quarterly check-in template** at the bottom
+5. **Update tax estimate** - if new W2s or tax payment data available, re-verify all withholdings (especially multi-W2 state withholdings)
+6. **Update performance table** - refresh stock prices, recalculate multi-period returns, update S&P 500 baseline
+7. **Update managed account analysis** - if new quarterly statements available, extract fees and calculate latest returns
+8. **Recalculate all derived numbers** - savings rate, FIRE numbers, progress percentages, asset allocation percentages, wealth projections
+9. **Review action items** - mark completed items with [x] and actual findings, add new ones
+10. **Update quarterly check-in template** at the bottom
+11. **Cross-check consistency** - verify the savings figure used in sections 3.4, 4.1, and 5.x all match section 1.4
 
 ## File References
 

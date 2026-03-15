@@ -65,35 +65,46 @@ Tax has three components:
 2. **Estimated tax payments** - quarterly payments made via 1040-ES
 3. **Expected balance due** - use prior year's balance due as proxy for current year
 
+**IMPORTANT:** When a person has multiple W2s, show the per-W2 breakdown in parentheses. Read each W2 individually - do not estimate state withholding from a single W2.
+
 **Table format:**
 ```
-| 税负来源 | Person A | Person B | 合计 |
+| 税负来源 | Person A | Person B (Employer1 + Employer2) | 合计 |
 |---------|----------|----------|------|
-| W2联邦预扣 | $XXX,XXX | $XXX,XXX | ~$XXX,XXX |
-| W2州预扣 | $XX,XXX | $XX,XXX | ~$XXX,XXX |
-| FICA (SS + Medicare) | ~$XX,XXX | ~$XX,XXX | ~$XX,XXX |
-| **W2预扣小计** | | | **~$XXX,XXX** |
+| W2联邦预扣 | $XXX,XXX | $XXX,XXX ($XX,XXX + $XX,XXX) | $XXX,XXX |
+| W2州预扣 | $XX,XXX | $XX,XXX ($XX,XXX + $XX,XXX) | $XXX,XXX |
+| FICA (SS + Medicare) | $XX,XXX | $XX,XXX | $XX,XXX |
+| **W2预扣小计** | **$XXX,XXX** | **$XXX,XXX** | **$XXX,XXX** |
 | 联邦估算税 | $XX,XXX | $XX,XXX | $XX,XXX |
 | 州估算税 | $X,XXX | $X,XXX | $XX,XXX |
 | **估算税小计** | | | **$XX,XXX** |
-| 预期补缴 (参照prior year) | ~$XXK | ~$XXK | **~$XXX,XXX** |
+| 预期补缴 (参照prior year实际) | ~$XXK | ~$XXK | **~$XXX,XXX** |
 | **总税负估算** | | | **~$XXX,XXX** |
 ```
+
+Present a single total (not a range). Including the balance due is essential - omitting it overstates savings by the full balance due amount.
 
 ### 1.4 年度储蓄率
 
 **Calculation:** 净储蓄 = 税前总收入 - 总税负 - 年度支出
 
+Use the detailed three-component format to make the tax calculation transparent and auditable:
+
 ```
-| 项目 | 金额 |
-|------|------|
-| 税前总收入 | ~$X,XXX,XXX |
-| 总税负 | ~$XXX,XXX |
-| 年度支出 | ~$XXX,XXX |
-| **年度净储蓄** | **~$XXX,XXX** |
-| **储蓄率 (占税前)** | **~XX%** |
-| **储蓄率 (占税后)** | **~XX%** |
+| 项目 | 金额 | 备注 |
+|------|------|------|
+| 税前总收入 | ~$X,XXX,XXX | |
+| W2预扣税 | ~$XXX,XXX | 含联邦+州+FICA, 基于实际W2 |
+| 估算税预缴 | ~$XX,XXX | Q1+Q2联邦+州 |
+| 预期补缴 (参照prior year实际) | ~$XXX,XXX | prior year实际补缴$XXX,XXX |
+| **总税负** | **~$XXX,XXX** | |
+| 年度支出 | ~$XXX,XXX | |
+| **年度净储蓄** | **~$XXX,XXX** | |
+| **储蓄率 (占税前)** | **~XX.X%** | |
+| **储蓄率 (占税后)** | **~XX.X%** | |
 ```
+
+Add a note explaining the basis for the estimate and any potential adjustments (e.g., excess SS withholding refund for multi-employer households).
 
 ---
 
@@ -235,7 +246,7 @@ If there are multiple scenarios, add a comprehensive comparison table covering:
 - Management burden
 - Cash flow flexibility
 
-When a rental property has an extremely low mortgage rate (e.g., 2.1%), calculate the annual arbitrage value:
+When a rental property has an extremely low mortgage rate (e.g., 2.5%), calculate the annual arbitrage value:
 利差套利 = remaining_mortgage x (expected_investment_return - mortgage_rate)
 
 For property sale tax estimation:
@@ -282,19 +293,38 @@ Purpose: Granular analysis of what's actually held across all accounts.
 
 This is the most data-intensive section. Requires per-account holding screenshots.
 
-**A. 按个股/ETF汇总 (跨账户合并)**
+**A. 按个股/ETF汇总 (跨账户合并) + Performance Benchmarking**
 
-The key insight: aggregate the same stock/ETF across all accounts.
+The key insight: aggregate the same stock/ETF across all accounts, and benchmark each against S&P 500.
 
+**Cross-account holding table:**
 ```
 | 股票/ETF | 类型 | Account1 | Account2 | ... | 合计市值 | 占流动资产比 |
 |---------|------|----------|----------|-----|---------|-----------|
 ```
 
+**Performance table with S&P 500 baseline (4 time horizons):**
+```
+| 股票/ETF | 类型 | 合计市值 | 占比 | 6个月 | 12个月 | 18个月 | 24个月 |
+|---------|------|---------|-----|------|-------|-------|-------|
+| | | | | **跑赢大盘** | | | |
+| [above-benchmark holdings, sorted by 12mo desc] |
+| **--- 标普500基线 ---** | **S&P 500 (VOO)** | | | **+X%** | **+XX%** | **+XX%** | **+XX%** |
+| | | | | **跑输大盘** | | | |
+| [below-benchmark holdings, sorted by 12mo desc] |
+```
+
+Use 12-month return as the primary criterion for above/below benchmark classification.
+
+For managed accounts (e.g., Goldman Sachs TACS), show two rows: gross (税前) and net (税后, in italics). See calculations.md section 10 for Modified Dietz method and fee calculation.
+
+After the table, add:
+1. A blockquote summarizing key performance observations
+2. For managed accounts: fee analysis, gross vs net comparison, and benchmark comparison narrative
+3. An overall performance ranking summary
+
 Calculation: Market value per holding = shares x price per share
 占流动资产比 = holding value / total liquid assets (含ESOP)
-
-Sort by market value descending.
 
 **B. 401K/Retirement Fund Breakdown**
 
@@ -325,12 +355,15 @@ Include LAL/margin as a deduction at the bottom.
 
 ### 5.2 配置问题
 
-Identify concentration risks. Key thresholds:
+Identify concentration risks and cost issues. Key thresholds:
 - Single stock > 5% of portfolio = flag
 - Single sector > 30% = flag
 - Cash < 3 months of spending = flag
 - Fixed income < 5% = flag (especially approaching FIRE)
 - Any employer where both income AND equity are concentrated = flag
+- Managed account fee > 1% annually = flag (include actual fee amount and rate, not just "possibly >X%")
+
+For managed accounts, present the fee finding with actual data, not estimates. Include whether the alpha justifies the fee based on the benchmark comparison from 5.1.A.
 
 ### 5.3 建议目标配置
 
@@ -350,7 +383,18 @@ Organize by time horizon:
 - 年度目标
 
 Use checkbox format: `- [ ]` for pending, `- [x]` for completed.
-When an item is completed, keep it visible with strikethrough and a note about the outcome.
+When an item is completed, keep it visible with strikethrough of the original question, followed by `->` and the actual finding/outcome with specific data. This turns action items into a knowledge base.
+
+**Completion format example:**
+```
+- [x] **评估[Account] Goldman Sachs管理费**: ~~确认advisory fee比例~~ -> 已确认: 管理费**~X.X%/年** (实际ADV FEE提取). 税后24个月回报大幅跑赢标普. **结论: 暂时保留**, 但需每季度监控
+```
+
+When an investigation action item is completed, include:
+1. The specific data found (actual numbers, not just "confirmed")
+2. The comparison/context (vs benchmark, vs expectation)
+3. The decision/conclusion with rationale
+4. Any follow-up monitoring criteria
 
 ---
 
