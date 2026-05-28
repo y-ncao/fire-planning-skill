@@ -12,6 +12,15 @@ This skill guides the creation of a comprehensive FIRE (Financial Independence, 
 
 The FIRE plan document has 9 major sections. Each section requires specific source data and follows specific calculation methodologies. The process is iterative - start with whatever data is available, then refine as the user provides more.
 
+## Current Local Paths
+
+- Obsidian FIRE folder: `/Users/yanc/Library/Mobile Documents/iCloud~md~obsidian/Documents/Personal Notes/Fire-Planning`
+- Obsidian vault git root: `/Users/yanc/Library/Mobile Documents/iCloud~md~obsidian/Documents`
+- Statement intake folder pattern: `~/Dropbox/Finance/fire-planning/YYYYQ#`
+- Working repo: `/Users/yanc/src/fire-planning`
+
+When editing Obsidian reports, stage only the intended report files from the vault git root. Ignore Obsidian workspace noise such as `.obsidian/workspace-mobile.json` unless the user explicitly asks to commit it.
+
 ## Workflow
 
 ### Phase 1: Data Gathering
@@ -82,6 +91,11 @@ Present at least two FIRE scenarios (e.g., keep status quo vs. sell rental prope
 ### Cross-Account Aggregation
 The most valuable insight comes from aggregating holdings across accounts. A user may hold the same stock across multiple brokerage accounts without realizing total concentration. Always present a cross-account consolidated view.
 
+When presenting per-holding tables, include each holding's percent of the relevant denominator. Default to "investable assets including vested ESOP, excluding real estate" unless the report defines a different portfolio base.
+
+### Cash Buffer Lenses
+Keep strict cash and broad cash-like liquidity separate. Strict cash includes checking, savings, bank deposits, and sweep cash. Broad cash buffer includes strict cash plus cash-like brokerage holdings such as SGOV, T-bill ETFs, T-bills, MMFs, and short-term Treasury funds. Verify SGOV/T-bill-like holdings from current holdings or statements; if inferred from an account-total gap, mark it approximate and list what must be confirmed.
+
 ### Actionable Over Theoretical
 Every analysis section should lead to specific, time-bound action items. "Reduce stock X concentration" is vague; "Sell $XX per quarter from Account A and Account B, redirect to VTI/VOO" is actionable.
 
@@ -93,6 +107,9 @@ Every holding should be measured against S&P 500 (VOO). Present multi-period ret
 
 ### Managed Account Analysis
 When the portfolio includes advisory/SMA accounts, extract actual fees from quarterly statements (not estimated from rate cards). Calculate returns using Modified Dietz method to account for contributions/withdrawals. See `references/calculations.md` sections 10-11 for detailed methodology.
+
+### Covered Call Reduction Plans
+If the user wants to trim concentrated holdings while collecting option premium, use **covered calls** only as a planning framework. Never suggest naked calls. A covered call must be backed by 100 shares in the same account; shares in another brokerage account do not cover it. Default proposal pattern: partial coverage, 30-60 DTE, strike above the user's acceptable sale price, roughly 5%-15% OTM or delta 0.20-0.35, avoid casual earnings-week trades, and accept assignment rather than endlessly rolling when the strike was a planned sale price. Note tax caveats and never place trades without explicit step-by-step approval.
 
 ## Format Guidelines
 
@@ -136,6 +153,8 @@ When updating an existing FIRE plan:
 9. **Review action items** - mark completed items with [x] and actual findings, add new ones
 10. **Update quarterly check-in template** at the bottom
 11. **Cross-check consistency** - verify the savings figure used in sections 3.4, 4.1, and 5.x all match section 1.4
+
+For quarterly updates, match the prior report's useful structure but do not copy unchanged prior-quarter sections just for format. Keep unchanged income/tax/spending assumptions as short references, and expand only sections where Q-over-Q data, decisions, risks, or recommendations changed.
 
 ## File References
 

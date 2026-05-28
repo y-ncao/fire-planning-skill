@@ -99,6 +99,39 @@ If the calculated savings rate exceeds ~35% of pre-tax income for a high-income 
 
 ---
 
+## Cash Buffer
+
+Keep strict cash and broad cash-like liquidity separate:
+
+```text
+Strict cash = checking + savings + bank deposits + sweep cash
+Broad cash buffer = strict cash + SGOV/T-bill ETFs + Treasury bills + MMFs + short-term Treasury funds
+```
+
+If SGOV or other cash-like holdings sit inside a brokerage account, include them in the broad cash buffer when evaluating emergency liquidity. Do not assume every unexplained brokerage balance is SGOV; if the value is inferred from account total minus known holdings, label it approximate and require current holdings or a quarterly statement to confirm.
+
+---
+
+## Covered Call Reduction Framework
+
+Covered calls can be used only when the user already wants to trim a concentrated holding. Treat it as a sell discipline with premium, not as free income.
+
+```text
+Eligible covered call contracts = floor(shares_in_same_account / 100)
+```
+
+Guidelines:
+- Never propose naked calls.
+- A contract must be covered by 100 shares in the same account; shares in another brokerage account do not cover it.
+- Start with partial coverage rather than all shares.
+- Typical planning defaults: 30-60 DTE, strike 5%-15% OTM or delta 0.20-0.35, adjusted to the user's actual willingness to sell.
+- Avoid casual earnings-week call selling unless the user explicitly accepts gap/assignment risk.
+- If price rises through a strike that was chosen as an acceptable sale price, accept assignment rather than automatically rolling forever.
+- Premium and assignment proceeds should have a destination, usually VOO/VTI or replenishing the broad cash buffer.
+- Flag tax issues: short-term premium taxation, capital gains on assignment, possible holding-period or qualified-dividend effects.
+
+---
+
 <a id="savings"></a>
 ## 3. Savings Rate
 
